@@ -1,10 +1,10 @@
 import { executionSteps } from "@/data/mockData";
 import { GitBranch, ArrowDown, User, AlertCircle } from "lucide-react";
 
-const statusStyles: Record<string, string> = {
-  confirmed: "border-status-confirmed bg-status-confirmed/5",
-  "needs-review": "border-status-review bg-status-review/5",
-  "missing-info": "border-status-missing bg-status-missing/5",
+const statusBorder: Record<string, string> = {
+  confirmed: "border-l-status-confirmed",
+  "needs-review": "border-l-status-review",
+  "missing-info": "border-l-status-missing",
 };
 
 const statusDot: Record<string, string> = {
@@ -16,17 +16,13 @@ const statusDot: Record<string, string> = {
 const ExecutionPlanView = () => {
   return (
     <div>
-      <div className="flex items-center gap-2 mb-2">
-        <GitBranch className="w-5 h-5 text-primary" />
-        <h2 className="text-lg font-semibold text-foreground">Execution Plan</h2>
-      </div>
-      <p className="text-xs text-muted-foreground mb-6">
+      <h2 className="text-2xl font-bold text-foreground mb-1">Execution Plan</h2>
+      <p className="text-sm text-muted-foreground mb-8">
         Logical dependency flow · {executionSteps.length} steps
       </p>
 
-      <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute left-5 top-4 bottom-4 w-px bg-border" />
+      <div className="relative ml-4">
+        <div className="absolute left-3 top-6 bottom-6 w-px bg-border" />
 
         <div className="space-y-0">
           {executionSteps.map((step, index) => {
@@ -36,38 +32,29 @@ const ExecutionPlanView = () => {
 
             return (
               <div key={step.id}>
-                {/* Connector arrow */}
                 {index > 0 && (
-                  <div className="flex items-center pl-[17px] py-1.5">
-                    <ArrowDown className="w-3.5 h-3.5 text-muted-foreground/50" />
+                  <div className="flex items-center pl-1 py-2">
+                    <ArrowDown className="w-3.5 h-3.5 text-muted-foreground/40" />
                     {dep && (
-                      <span className="text-[9px] text-muted-foreground ml-2 italic">
+                      <span className="text-[10px] text-muted-foreground ml-3 italic">
                         depends on: {dep.title}
                       </span>
                     )}
                   </div>
                 )}
 
-                {/* Step */}
-                <div className={`relative flex items-start gap-4 p-4 rounded-lg border-l-2 ml-2 ${statusStyles[step.status]}`}>
-                  {/* Dot on timeline */}
-                  <div className={`absolute -left-[9px] top-5 w-3.5 h-3.5 rounded-full border-2 border-background ${statusDot[step.status]}`} />
+                <div className={`relative glass-panel border-l-[3px] ${statusBorder[step.status]} p-5 ml-4`}>
+                  <div className={`absolute -left-[11px] top-6 w-4 h-4 rounded-full border-[3px] border-background ${statusDot[step.status]}`} />
 
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-medium text-foreground">{step.title}</h4>
-                    <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <User className="w-3 h-3" />
-                        {step.owner || (
-                          <span className="text-status-missing italic flex items-center gap-0.5">
-                            <AlertCircle className="w-3 h-3" /> Unassigned
-                          </span>
-                        )}
+                  <h4 className="text-[15px] font-semibold text-foreground mb-2">{step.title}</h4>
+                  <div className="flex items-center gap-2 text-[13px] text-muted-foreground">
+                    <User className="w-3.5 h-3.5" strokeWidth={1.8} />
+                    {step.owner || (
+                      <span className="text-status-missing italic flex items-center gap-1 text-xs">
+                        <AlertCircle className="w-3 h-3" /> Unassigned
                       </span>
-                    </div>
+                    )}
                   </div>
-
-                  <span className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${statusDot[step.status]}`} />
                 </div>
               </div>
             );
