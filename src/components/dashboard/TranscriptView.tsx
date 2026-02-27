@@ -8,33 +8,30 @@ interface TranscriptViewProps {
 
 const TranscriptView = ({ onSelectLine, highlightedLine }: TranscriptViewProps) => {
   return (
-    <div className="space-y-1">
-      <div className="flex items-center gap-2 mb-6">
-        <MessageSquare className="w-5 h-5 text-primary" />
-        <h2 className="text-lg font-semibold text-foreground">Meeting Transcript</h2>
-        <span className="text-xs text-muted-foreground ml-2">12 segments · 7 min 35 sec</span>
-      </div>
+    <div>
+      <h2 className="text-2xl font-bold text-foreground mb-1">Transcript</h2>
+      <p className="text-sm text-muted-foreground mb-8">12 segments · 7 min 35 sec</p>
 
-      <div className="space-y-1">
+      <div className="space-y-1.5">
         {transcript.map((line) => (
           <button
             key={line.id}
             onClick={() => onSelectLine?.(line.id)}
-            className={`w-full text-left px-4 py-3 rounded-lg transition-all group
-              ${highlightedLine === line.id ? "bg-ai-surface border border-ai-border" : "hover:bg-muted/50"}
-              ${line.isActionable ? "ai-highlight" : ""}
+            className={`w-full text-left px-5 py-4 rounded-xl transition-all group
+              ${highlightedLine === line.id ? "glass-panel-raised ring-1 ring-border" : "hover:bg-card/60"}
+              ${line.isActionable ? "border-l-2 border-l-ai-border bg-ai-surface/40" : ""}
             `}
           >
-            <div className="flex items-center gap-3 mb-1">
-              <span className="text-xs font-medium text-primary">{line.speaker}</span>
-              <span className="text-[10px] text-muted-foreground font-mono">{line.timestamp}</span>
+            <div className="flex items-center gap-3 mb-1.5">
+              <span className="text-[13px] font-semibold text-foreground">{line.speaker}</span>
+              <span className="text-[11px] text-muted-foreground font-mono">{line.timestamp}</span>
               {line.isActionable && (
-                <span className="text-[9px] font-medium text-ai-text bg-ai-surface border border-ai-border px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-medium text-ai-text bg-ai-surface border border-ai-border px-2 py-0.5 rounded-full">
                   Actionable
                 </span>
               )}
             </div>
-            <p className="text-sm text-foreground/85 leading-relaxed">{line.text}</p>
+            <p className="text-[14px] text-foreground/75 leading-relaxed">{line.text}</p>
           </button>
         ))}
       </div>

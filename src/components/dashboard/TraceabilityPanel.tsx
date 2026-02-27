@@ -11,58 +11,59 @@ const TraceabilityPanel = ({ selectedActionId }: TraceabilityPanelProps) => {
 
   if (!action) {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
-        <Link2 className="w-8 h-8 text-muted-foreground/40 mb-3" />
-        <p className="text-sm text-muted-foreground">Select an action item to view its traceability details.</p>
-        <p className="text-xs text-muted-foreground/60 mt-1">Source references, AI reasoning, and validation controls will appear here.</p>
+      <div className="h-full flex flex-col items-center justify-center text-center px-8">
+        <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-4">
+          <Link2 className="w-5 h-5 text-muted-foreground" strokeWidth={1.8} />
+        </div>
+        <p className="text-[14px] text-muted-foreground font-medium mb-1">No item selected</p>
+        <p className="text-[12px] text-muted-foreground/60 leading-relaxed">Select an action item to view source references and AI reasoning.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-5">
-      {/* Header */}
+    <div className="space-y-6">
       <div>
-        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Traceability</h3>
-        <h4 className="text-sm font-semibold text-foreground">{action.title}</h4>
+        <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">Traceability</p>
+        <h4 className="text-[15px] font-bold text-foreground">{action.title}</h4>
       </div>
 
-      {/* Source Reference */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-          <Link2 className="w-3.5 h-3.5" />
+      {/* Source */}
+      <div>
+        <div className="flex items-center gap-2 text-[12px] font-semibold text-muted-foreground mb-2.5">
+          <Link2 className="w-3.5 h-3.5" strokeWidth={1.8} />
           Source Reference
         </div>
-        <div className="p-3 rounded-md bg-muted/50 text-xs leading-relaxed">
-          <span className="font-mono text-[10px] text-accent mr-1.5">[{action.sourceTimestamp}]</span>
-          <span className="text-foreground/80">"{action.sourceSentence}"</span>
+        <div className="p-4 rounded-xl bg-muted/50 text-[13px] leading-relaxed">
+          <span className="font-mono text-[10px] text-muted-foreground mr-2">[{action.sourceTimestamp}]</span>
+          <span className="text-foreground/75">"{action.sourceSentence}"</span>
         </div>
       </div>
 
       {/* AI Reasoning */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-          <Brain className="w-3.5 h-3.5" />
+      <div>
+        <div className="flex items-center gap-2 text-[12px] font-semibold text-muted-foreground mb-2.5">
+          <Brain className="w-3.5 h-3.5" strokeWidth={1.8} />
           AI Reasoning
         </div>
-        <div className="p-3 rounded-md bg-ai-surface border border-ai-border text-xs text-ai-text leading-relaxed">
+        <div className="p-4 rounded-xl bg-ai-surface border border-ai-border text-[13px] text-ai-text leading-relaxed">
           {action.reasoning}
         </div>
       </div>
 
-      {/* Flags */}
+      {/* Missing */}
       {action.missingFields.length > 0 && (
-        <div className="space-y-2">
-          <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <AlertTriangle className="w-3.5 h-3.5" />
+        <div>
+          <div className="flex items-center gap-2 text-[12px] font-semibold text-muted-foreground mb-2.5">
+            <AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.8} />
             Missing Information
           </div>
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             {action.missingFields.map((f) => (
-              <div key={f} className="flex items-center gap-2 p-2.5 rounded-md text-xs status-missing border">
-                <AlertTriangle className="w-3 h-3 flex-shrink-0" />
-                <span className="font-medium">{f}</span>
-                <span className="text-[10px] opacity-75">— Requires confirmation</span>
+              <div key={f} className="flex items-center gap-2.5 p-3 rounded-xl text-[13px] status-missing border">
+                <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="font-semibold">{f}</span>
+                <span className="text-[11px] opacity-70">— Requires confirmation</span>
               </div>
             ))}
           </div>
@@ -70,33 +71,31 @@ const TraceabilityPanel = ({ selectedActionId }: TraceabilityPanelProps) => {
       )}
 
       {/* Confidence */}
-      <div className="space-y-2">
-        <div className="text-xs font-medium text-muted-foreground">Confidence Level</div>
-        <div className="flex items-center gap-2">
-          <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all
-                ${action.confidence === "high" ? "w-full bg-status-confirmed" : ""}
-                ${action.confidence === "medium" ? "w-2/3 bg-status-review" : ""}
-                ${action.confidence === "low" ? "w-1/3 bg-status-missing" : ""}
-              `}
-            />
+      <div>
+        <p className="text-[12px] font-semibold text-muted-foreground mb-2.5">Confidence</p>
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+            <div className={`h-full rounded-full transition-all
+              ${action.confidence === "high" ? "w-full bg-status-confirmed" : ""}
+              ${action.confidence === "medium" ? "w-2/3 bg-status-review" : ""}
+              ${action.confidence === "low" ? "w-1/3 bg-status-missing" : ""}
+            `} />
           </div>
-          <span className="text-[10px] font-medium text-muted-foreground capitalize">{action.confidence}</span>
+          <span className="text-[11px] font-semibold text-muted-foreground capitalize w-14">{action.confidence}</span>
         </div>
       </div>
 
-      {/* Validation Controls */}
-      <div className="space-y-2 pt-2 border-t border-border">
-        <div className="text-xs font-medium text-muted-foreground mb-3">Human Validation</div>
+      {/* Validation */}
+      <div className="pt-4 border-t border-border">
+        <p className="text-[12px] font-semibold text-muted-foreground mb-3">Validation</p>
         <div className="flex flex-col gap-2">
-          <Button size="sm" variant="outline" className="text-xs gap-1.5 justify-start h-8 text-status-confirmed border-status-confirmed/30 hover:bg-status-confirmed/10">
-            <CheckCircle2 className="w-3.5 h-3.5" /> Approve Action
+          <Button size="sm" variant="outline" className="text-xs gap-2 justify-start h-9 rounded-xl text-status-confirmed hover:bg-muted">
+            <CheckCircle2 className="w-3.5 h-3.5" /> Approve
           </Button>
-          <Button size="sm" variant="outline" className="text-xs gap-1.5 justify-start h-8">
+          <Button size="sm" variant="outline" className="text-xs gap-2 justify-start h-9 rounded-xl">
             <Edit3 className="w-3.5 h-3.5" /> Edit Details
           </Button>
-          <Button size="sm" variant="outline" className="text-xs gap-1.5 justify-start h-8 text-status-missing border-status-missing/30 hover:bg-status-missing/10">
+          <Button size="sm" variant="outline" className="text-xs gap-2 justify-start h-9 rounded-xl text-status-missing hover:bg-muted">
             <XCircle className="w-3.5 h-3.5" /> Reject
           </Button>
         </div>
