@@ -36,26 +36,21 @@
 
     --radius: 1rem;
 
-    /* Status colors - kept subtle */
     --status-confirmed: 152 35% 48%;
     --status-review: 38 60% 52%;
     --status-missing: 0 50% 55%;
 
-    /* AI accent - muted teal */
     --ai-surface: 170 15% 94%;
     --ai-border: 170 15% 82%;
     --ai-text: 170 20% 32%;
 
-    /* Panel - white glassmorphic */
     --panel: 0 0% 98%;
     --panel-hover: 0 0% 95%;
 
-    /* Icon rail - dark */
     --rail: 0 0% 15%;
     --rail-foreground: 0 0% 70%;
     --rail-active: 0 0% 100%;
 
-    /* Sidebar - light */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 25%;
     --sidebar-primary: 0 0% 10%;
@@ -66,24 +61,84 @@
     --sidebar-ring: 0 0% 30%;
     --sidebar-muted: 0 0% 55%;
 
-    /* Badge */
     --badge: 0 0% 90%;
     --badge-foreground: 0 0% 45%;
 
-    /* Success chip */
     --chip-success: 152 30% 92%;
     --chip-success-foreground: 152 40% 30%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 92%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 0 0% 90%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 90%;
+
+    --destructive: 0 55% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 70%;
+
+    --status-confirmed: 152 35% 50%;
+    --status-review: 38 55% 55%;
+    --status-missing: 0 50% 55%;
+
+    --ai-surface: 170 15% 14%;
+    --ai-border: 170 15% 25%;
+    --ai-text: 170 20% 70%;
+
+    --panel: 0 0% 11%;
+    --panel-hover: 0 0% 14%;
+
+    --rail: 0 0% 6%;
+    --rail-foreground: 0 0% 45%;
+    --rail-active: 0 0% 95%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 75%;
+    --sidebar-primary: 0 0% 92%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 0% 70%;
+    --sidebar-muted: 0 0% 50%;
+
+    --badge: 0 0% 20%;
+    --badge-foreground: 0 0% 60%;
+
+    --chip-success: 152 30% 15%;
+    --chip-success-foreground: 152 40% 70%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-200;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
