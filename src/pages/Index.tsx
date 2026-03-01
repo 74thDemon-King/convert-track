@@ -40,8 +40,6 @@ const Index = () => {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden p-0">
-      <IconRail activeIcon={activeIcon} onIconChange={setActiveIcon} />
-
       <WorkflowSidebar
         activeStage={activeStage}
         onStageChange={setActiveStage}
@@ -51,8 +49,8 @@ const Index = () => {
 
       <main className="flex-1 flex flex-col min-w-0">
         <div className="flex-1 m-2 ml-1.5 rounded-2xl bg-card border border-border overflow-hidden flex flex-col transition-all duration-300">
-          <div className="flex items-center justify-between px-8 py-4 border-b border-border">
-            <div />
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+            <IconRail activeIcon={activeIcon} onIconChange={setActiveIcon} />
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" strokeWidth={1.8} />
               <input
