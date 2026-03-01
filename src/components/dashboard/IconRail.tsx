@@ -24,49 +24,45 @@ const icons = [
 
 const IconRail = ({ activeIcon, onIconChange }: IconRailProps) => {
   return (
-    <div className="w-16 min-w-[64px] bg-rail flex flex-col items-center py-5 rounded-2xl m-2 mr-0">
+    <div className="flex items-center gap-2 px-4">
       {/* Logo */}
-      <div className="w-9 h-9 flex items-center justify-center mb-6">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 2L2 10l8 8 8-8-8-8z" stroke="hsl(var(--rail-foreground))" strokeWidth="1.5" fill="none"/>
-          <path d="M6 10h8M10 6v8" stroke="hsl(var(--rail-foreground))" strokeWidth="1.5"/>
+      <div className="w-8 h-8 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L2 10l8 8 8-8-8-8z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+          <path d="M6 10h8M10 6v8" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       </div>
 
-      <div className="w-6 h-px bg-rail-foreground/20 mb-4" />
+      <div className="w-px h-5 bg-border shrink-0" />
 
       {/* Nav icons */}
-      <nav className="flex-1 flex flex-col items-center gap-1">
+      <nav className="flex items-center gap-1">
         {icons.map((item) => {
           const isActive = activeIcon === item.id;
           return (
             <button
               key={item.id}
               onClick={() => onIconChange(item.id)}
-              className={`w-10 h-10 flex items-center justify-center rounded-xl transition-all
+              className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all
                 ${isActive
-                  ? "bg-rail-foreground/15 text-rail-active"
-                  : "text-rail-foreground hover:text-rail-active hover:bg-rail-foreground/10"
+                  ? "bg-accent text-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                 }
               `}
             >
-              <item.icon className="w-[18px] h-[18px]" strokeWidth={1.8} />
+              <item.icon className="w-4 h-4" strokeWidth={1.8} />
             </button>
           );
         })}
       </nav>
 
-      {/* Vertical label */}
-      <div className="my-6">
-        <p className="text-[8px] font-medium text-rail-foreground/40 tracking-[0.2em] uppercase"
-           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
-          MeetingOps 2025
-        </p>
-      </div>
+      <p className="text-[10px] font-medium text-muted-foreground/50 tracking-[0.15em] uppercase ml-2 shrink-0">
+        MeetingOps 2025
+      </p>
 
       {/* Settings */}
-      <button className="w-10 h-10 flex items-center justify-center rounded-xl text-rail-foreground hover:text-rail-active hover:bg-rail-foreground/10 transition-all mt-auto">
-        <Settings className="w-[18px] h-[18px]" strokeWidth={1.8} />
+      <button className="w-8 h-8 flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all ml-auto shrink-0">
+        <Settings className="w-4 h-4" strokeWidth={1.8} />
       </button>
     </div>
   );
