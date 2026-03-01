@@ -6,7 +6,10 @@ import {
   LayoutGrid,
   Sparkles,
   Settings,
+  Moon,
+  Sun,
 } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
 
 interface IconRailProps {
   activeIcon: string;
@@ -23,6 +26,8 @@ const icons = [
 ];
 
 const IconRail = ({ activeIcon, onIconChange }: IconRailProps) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <div className="flex items-center gap-2 px-4">
       {/* Logo */}
@@ -60,8 +65,15 @@ const IconRail = ({ activeIcon, onIconChange }: IconRailProps) => {
         MeetingOps 2025
       </p>
 
-      {/* Settings */}
-      <button className="w-8 h-8 flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all ml-auto shrink-0">
+      {/* Theme toggle + Settings */}
+      <button
+        onClick={toggleTheme}
+        title={theme === "light" ? "Dark mode" : "Light mode"}
+        className="w-8 h-8 flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all ml-auto shrink-0"
+      >
+        {theme === "light" ? <Moon className="w-4 h-4" strokeWidth={1.8} /> : <Sun className="w-4 h-4" strokeWidth={1.8} />}
+      </button>
+      <button className="w-8 h-8 flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all shrink-0">
         <Settings className="w-4 h-4" strokeWidth={1.8} />
       </button>
     </div>
