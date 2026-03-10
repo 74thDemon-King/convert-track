@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUserRole } from "@/hooks/use-user-role";
 import IconRail from "@/components/dashboard/IconRail";
 import WorkflowSidebar from "@/components/dashboard/WorkflowSidebar";
 import TranscriptView from "@/components/dashboard/TranscriptView";
