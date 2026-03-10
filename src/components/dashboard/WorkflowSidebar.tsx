@@ -122,8 +122,6 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
           </div>
         </div>
 
-        <div className="h-px bg-white/10 mx-1" />
-
         {/* Status - manager only */}
         {isManager && (
           <>
@@ -136,9 +134,6 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
             </div>
           </>
         )}
-        </div>
-
-        <div className="h-px bg-white/10 mx-1" />
 
         {/* History */}
         <div>
