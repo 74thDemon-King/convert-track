@@ -26,6 +26,8 @@ const Index = () => {
         return <TranscriptView onSelectLine={setHighlightedTranscriptLine} highlightedLine={highlightedTranscriptLine} />;
       case "actions":
         return <ActionsView selectedAction={selectedAction} onSelectAction={setSelectedAction} />;
+      case "executive":
+        return <ExecutiveDashboardView />;
       case "execution":
         return <ExecutionPlanView />;
       case "artifacts":
