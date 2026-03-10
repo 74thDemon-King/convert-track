@@ -54,7 +54,7 @@ const documents = [
   { name: "Retrospectives", count: 3 },
 ];
 
-const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse }: WorkflowSidebarProps) => {
+const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager }: WorkflowSidebarProps) => {
 
   const renderButton = (id: string, label: string, Icon: any, count?: number) => {
     const isActive = activeStage === id;
