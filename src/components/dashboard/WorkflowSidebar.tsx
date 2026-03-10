@@ -116,7 +116,9 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
         <div>
           {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Projects</p>}
           <div className="space-y-0.5">
-            {projectStages.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
+            {projectStages
+              .filter((s) => isManager || ["actions", "transcript", "execution"].includes(s.id))
+              .map((s) => renderButton(s.id, s.label, s.icon, s.count))}
           </div>
         </div>
 
