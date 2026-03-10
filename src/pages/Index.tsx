@@ -7,6 +7,7 @@ import ExecutionPlanView from "@/components/dashboard/ExecutionPlanView";
 import ArtifactsView from "@/components/dashboard/ArtifactsView";
 import ReviewQueueView from "@/components/dashboard/ReviewQueueView";
 import FileUploadView from "@/components/dashboard/FileUploadView";
+import ExecutiveDashboardView from "@/components/dashboard/ExecutiveDashboardView";
 import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
 import { Search } from "lucide-react";
 
@@ -25,6 +26,8 @@ const Index = () => {
         return <TranscriptView onSelectLine={setHighlightedTranscriptLine} highlightedLine={highlightedTranscriptLine} />;
       case "actions":
         return <ActionsView selectedAction={selectedAction} onSelectAction={setSelectedAction} />;
+      case "executive":
+        return <ExecutiveDashboardView />;
       case "execution":
         return <ExecutionPlanView />;
       case "artifacts":

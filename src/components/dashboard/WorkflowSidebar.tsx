@@ -5,6 +5,7 @@ import {
   GitBranch,
   FileOutput,
   ShieldCheck,
+  BarChart3,
   Bell,
   Users,
   Clock,
@@ -27,6 +28,7 @@ interface WorkflowSidebarProps {
 
 const projectStages = [
   { id: "actions", label: "Dashboard", icon: Sparkles, count: 5 },
+  { id: "executive", label: "Executive Metrics", icon: BarChart3 },
   { id: "transcript", label: "Transcript", icon: FileText },
   { id: "execution", label: "Execution Plan", icon: GitBranch },
 ];
