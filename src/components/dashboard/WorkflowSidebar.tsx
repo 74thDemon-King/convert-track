@@ -5,6 +5,7 @@ import {
   GitBranch,
   FileOutput,
   ShieldCheck,
+  BarChart3,
   Bell,
   Users,
   Clock,
