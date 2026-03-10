@@ -56,7 +56,11 @@ const documents = [
   { name: "Retrospectives", count: 3 },
 ];
 
-const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager }: WorkflowSidebarProps) => {
+const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager, userName, userEmail }: WorkflowSidebarProps) => {
+  const initials = userName
+    ? userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "??";
+  const roleLabel = isManager ? "Team Manager" : "Team Member";
 
   const renderButton = (id: string, label: string, Icon: any, count?: number) => {
     const isActive = activeStage === id;
