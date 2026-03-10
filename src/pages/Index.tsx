@@ -16,6 +16,20 @@ import { Search } from "lucide-react";
 
 const Index = () => {
   const { isManager } = useUserRole();
+  const { user } = useAuth();
+  const [userName, setUserName] = useState<string>("");
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("user_id", user.id)
+      .single()
+      .then(({ data }) => {
+        if (data) setUserName(data.full_name);
+      });
+  }, [user]);
   const [activeStage, setActiveStage] = useState("actions");
   const [activeIcon, setActiveIcon] = useState("home");
   const [selectedAction, setSelectedAction] = useState<string | null>("a1");
