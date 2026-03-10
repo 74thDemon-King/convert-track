@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUserRole } from "@/hooks/use-user-role";
 import IconRail from "@/components/dashboard/IconRail";
 import WorkflowSidebar from "@/components/dashboard/WorkflowSidebar";
 import TranscriptView from "@/components/dashboard/TranscriptView";
@@ -12,6 +13,7 @@ import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
 import { Search } from "lucide-react";
 
 const Index = () => {
+  const { isManager } = useUserRole();
   const [activeStage, setActiveStage] = useState("actions");
   const [activeIcon, setActiveIcon] = useState("home");
   const [selectedAction, setSelectedAction] = useState<string | null>("a1");
@@ -48,6 +50,7 @@ const Index = () => {
         onStageChange={setActiveStage}
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        isManager={isManager}
       />
 
       <main className="flex-1 flex flex-col min-w-0">

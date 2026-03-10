@@ -24,6 +24,7 @@ interface WorkflowSidebarProps {
   onStageChange: (stage: string) => void;
   collapsed: boolean;
   onToggleCollapse: () => void;
+  isManager: boolean;
 }
 
 const projectStages = [
@@ -53,7 +54,7 @@ const documents = [
   { name: "Retrospectives", count: 3 },
 ];
 
-const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse }: WorkflowSidebarProps) => {
+const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager }: WorkflowSidebarProps) => {
 
   const renderButton = (id: string, label: string, Icon: any, count?: number) => {
     const isActive = activeStage === id;
@@ -115,21 +116,24 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
         <div>
           {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Projects</p>}
           <div className="space-y-0.5">
-            {projectStages.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
+            {projectStages
+              .filter((s) => isManager || ["actions", "transcript", "execution"].includes(s.id))
+              .map((s) => renderButton(s.id, s.label, s.icon, s.count))}
           </div>
         </div>
 
-        <div className="h-px bg-white/10 mx-1" />
-
-        {/* Status */}
-        <div>
-          {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Status</p>}
-          <div className="space-y-0.5">
-            {statusItems.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
-          </div>
-        </div>
-
-        <div className="h-px bg-white/10 mx-1" />
+        {/* Status - manager only */}
+        {isManager && (
+          <>
+            <div className="h-px bg-white/10 mx-1" />
+            <div>
+              {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Status</p>}
+              <div className="space-y-0.5">
+                {statusItems.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
+              </div>
+            </div>
+          </>
+        )}
 
         {/* History */}
         <div>
