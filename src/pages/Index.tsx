@@ -7,6 +7,7 @@ import ExecutionPlanView from "@/components/dashboard/ExecutionPlanView";
 import ArtifactsView from "@/components/dashboard/ArtifactsView";
 import ReviewQueueView from "@/components/dashboard/ReviewQueueView";
 import FileUploadView from "@/components/dashboard/FileUploadView";
+import ExecutiveDashboardView from "@/components/dashboard/ExecutiveDashboardView";
 import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
 import { Search } from "lucide-react";
 
