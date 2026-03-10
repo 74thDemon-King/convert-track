@@ -216,6 +216,18 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
         )}
       </div>
 
+      {/* Sign out */}
+      <div className="px-3 pb-3 pt-1">
+        <div className="h-px bg-white/10 mx-1 mb-2" />
+        <button
+          onClick={onSignOut}
+          title={collapsed ? "Sign out" : undefined}
+          className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] text-white/50 hover:bg-white/10 hover:text-red-400 transition-all duration-200"
+        >
+          <LogOut className="w-4 h-4 flex-shrink-0" strokeWidth={1.8} />
+          {!collapsed && <span className="flex-1 text-left">Sign out</span>}
+        </button>
+      </div>
     </aside>
   );
 };
