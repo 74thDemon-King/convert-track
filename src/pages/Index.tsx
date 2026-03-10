@@ -67,6 +67,8 @@ const Index = () => {
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         isManager={isManager}
+        userName={userName}
+        userEmail={user?.email}
       />
 
       <main className="flex-1 flex flex-col min-w-0">
