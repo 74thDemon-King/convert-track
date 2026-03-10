@@ -28,6 +28,7 @@ interface WorkflowSidebarProps {
   isManager: boolean;
   userName?: string;
   userEmail?: string;
+  onSignOut: () => void;
 }
 
 const projectStages = [
