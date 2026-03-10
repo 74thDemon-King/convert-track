@@ -58,7 +58,7 @@ const documents = [
   { name: "Retrospectives", count: 3 },
 ];
 
-const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager, userName, userEmail }: WorkflowSidebarProps) => {
+const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager, userName, userEmail, onSignOut }: WorkflowSidebarProps) => {
   const initials = userName
     ? userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
     : "??";
