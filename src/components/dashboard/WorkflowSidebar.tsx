@@ -25,6 +25,8 @@ interface WorkflowSidebarProps {
   collapsed: boolean;
   onToggleCollapse: () => void;
   isManager: boolean;
+  userName?: string;
+  userEmail?: string;
 }
 
 const projectStages = [
