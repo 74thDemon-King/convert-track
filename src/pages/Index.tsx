@@ -50,6 +50,7 @@ const Index = () => {
         onStageChange={setActiveStage}
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        isManager={isManager}
       />
 
       <main className="flex-1 flex flex-col min-w-0">
