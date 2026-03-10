@@ -124,12 +124,18 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
 
         <div className="h-px bg-white/10 mx-1" />
 
-        {/* Status */}
-        <div>
-          {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Status</p>}
-          <div className="space-y-0.5">
-            {statusItems.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
-          </div>
+        {/* Status - manager only */}
+        {isManager && (
+          <>
+            <div className="h-px bg-white/10 mx-1" />
+            <div>
+              {!collapsed && <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider px-2.5 mb-2">Status</p>}
+              <div className="space-y-0.5">
+                {statusItems.map((s) => renderButton(s.id, s.label, s.icon, s.count))}
+              </div>
+            </div>
+          </>
+        )}
         </div>
 
         <div className="h-px bg-white/10 mx-1" />
