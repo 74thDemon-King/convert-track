@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUserRole } from "@/hooks/use-user-role";
+import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
 import IconRail from "@/components/dashboard/IconRail";
 import WorkflowSidebar from "@/components/dashboard/WorkflowSidebar";
 import TranscriptView from "@/components/dashboard/TranscriptView";
@@ -14,6 +16,20 @@ import { Search } from "lucide-react";
 
 const Index = () => {
   const { isManager } = useUserRole();
+  const { user } = useAuth();
+  const [userName, setUserName] = useState<string>("");
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("user_id", user.id)
+      .single()
+      .then(({ data }) => {
+        if (data) setUserName(data.full_name);
+      });
+  }, [user]);
   const [activeStage, setActiveStage] = useState("actions");
   const [activeIcon, setActiveIcon] = useState("home");
   const [selectedAction, setSelectedAction] = useState<string | null>("a1");
@@ -51,6 +67,8 @@ const Index = () => {
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         isManager={isManager}
+        userName={userName}
+        userEmail={user?.email}
       />
 
       <main className="flex-1 flex flex-col min-w-0">

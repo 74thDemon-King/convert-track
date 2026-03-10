@@ -25,6 +25,8 @@ interface WorkflowSidebarProps {
   collapsed: boolean;
   onToggleCollapse: () => void;
   isManager: boolean;
+  userName?: string;
+  userEmail?: string;
 }
 
 const projectStages = [
@@ -54,7 +56,11 @@ const documents = [
   { name: "Retrospectives", count: 3 },
 ];
 
-const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager }: WorkflowSidebarProps) => {
+const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollapse, isManager, userName, userEmail }: WorkflowSidebarProps) => {
+  const initials = userName
+    ? userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "??";
+  const roleLabel = isManager ? "Team Manager" : "Team Member";
 
   const renderButton = (id: string, label: string, Icon: any, count?: number) => {
     const isActive = activeStage === id;
@@ -92,14 +98,18 @@ const WorkflowSidebar = ({ activeStage, onStageChange, collapsed, onToggleCollap
         {!collapsed && (
           <div className="flex items-center gap-3 px-2">
             <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-              <span className="text-xs font-semibold text-white/70">JD</span>
+              <span className="text-xs font-semibold text-white/70">{initials}</span>
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1">
-                <span className="text-sm font-semibold text-white truncate">John Doe</span>
+                <span className="text-sm font-semibold text-white truncate">{userName || "User"}</span>
                 <ChevronDown className="w-3 h-3 text-white/40 flex-shrink-0" />
               </div>
-              <p className="text-[11px] text-white/40 truncate">john@meetingops.io</p>
+              <div className="flex items-center gap-1.5">
+                <span className={`text-[9px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full ${isManager ? "bg-amber-500/20 text-amber-300" : "bg-sky-500/20 text-sky-300"}`}>
+                  {roleLabel}
+                </span>
+              </div>
             </div>
           </div>
         )}
