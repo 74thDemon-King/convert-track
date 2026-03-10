@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useUserRole } from "@/hooks/use-user-role";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 import IconRail from "@/components/dashboard/IconRail";
 import WorkflowSidebar from "@/components/dashboard/WorkflowSidebar";
 import TranscriptView from "@/components/dashboard/TranscriptView";
@@ -16,7 +17,8 @@ import { Search } from "lucide-react";
 
 const Index = () => {
   const { isManager } = useUserRole();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("");
 
   useEffect(() => {
@@ -69,6 +71,7 @@ const Index = () => {
         isManager={isManager}
         userName={userName}
         userEmail={user?.email}
+        onSignOut={async () => { await signOut(); navigate("/login"); }}
       />
 
       <main className="flex-1 flex flex-col min-w-0">
