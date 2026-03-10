@@ -17,6 +17,7 @@ import {
   ChevronDown,
   PanelLeftClose,
   PanelLeftOpen,
+  LogOut,
 } from "lucide-react";
 
 interface WorkflowSidebarProps {
