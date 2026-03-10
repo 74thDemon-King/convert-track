@@ -17,7 +17,8 @@ import { Search } from "lucide-react";
 
 const Index = () => {
   const { isManager } = useUserRole();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("");
 
   useEffect(() => {
