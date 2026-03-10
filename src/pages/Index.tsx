@@ -13,6 +13,7 @@ import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
 import { Search } from "lucide-react";
 
 const Index = () => {
+  const { isManager } = useUserRole();
   const [activeStage, setActiveStage] = useState("actions");
   const [activeIcon, setActiveIcon] = useState("home");
   const [selectedAction, setSelectedAction] = useState<string | null>("a1");
