@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useUserRole } from "@/hooks/use-user-role";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 import IconRail from "@/components/dashboard/IconRail";
 import WorkflowSidebar from "@/components/dashboard/WorkflowSidebar";
 import TranscriptView from "@/components/dashboard/TranscriptView";
