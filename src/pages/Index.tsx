@@ -39,7 +39,8 @@ const Index = () => {
   const [highlightedTranscriptLine, setHighlightedTranscriptLine] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const showTraceability = activeStage === "actions" || activeStage === "transcript";
+  const isHome = activeIcon === "home";
+  const showTraceability = !isHome && (activeStage === "actions" || activeStage === "transcript");
 
   const renderMainContent = () => {
     switch (activeStage) {
