@@ -13,6 +13,7 @@ import ReviewQueueView from "@/components/dashboard/ReviewQueueView";
 import FileUploadView from "@/components/dashboard/FileUploadView";
 import ExecutiveDashboardView from "@/components/dashboard/ExecutiveDashboardView";
 import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
+import HomeView from "@/components/dashboard/HomeView";
 import { Search } from "lucide-react";
 
 const Index = () => {
@@ -38,7 +39,8 @@ const Index = () => {
   const [highlightedTranscriptLine, setHighlightedTranscriptLine] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const showTraceability = activeStage === "actions" || activeStage === "transcript";
+  const isHome = activeIcon === "home";
+  const showTraceability = !isHome && (activeStage === "actions" || activeStage === "transcript");
 
   const renderMainContent = () => {
     switch (activeStage) {
@@ -91,7 +93,7 @@ const Index = () => {
           <div className="flex-1 flex overflow-hidden">
             <div className="flex-1 overflow-y-auto px-8 py-8">
               <div className="animate-in fade-in duration-300">
-                {renderMainContent()}
+                {isHome ? <HomeView isManager={isManager} /> : renderMainContent()}
               </div>
             </div>
 
