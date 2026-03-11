@@ -13,6 +13,7 @@ import ReviewQueueView from "@/components/dashboard/ReviewQueueView";
 import FileUploadView from "@/components/dashboard/FileUploadView";
 import ExecutiveDashboardView from "@/components/dashboard/ExecutiveDashboardView";
 import TraceabilityPanel from "@/components/dashboard/TraceabilityPanel";
+import HomeView from "@/components/dashboard/HomeView";
 import { Search } from "lucide-react";
 
 const Index = () => {
