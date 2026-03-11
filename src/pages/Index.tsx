@@ -93,7 +93,7 @@ const Index = () => {
           <div className="flex-1 flex overflow-hidden">
             <div className="flex-1 overflow-y-auto px-8 py-8">
               <div className="animate-in fade-in duration-300">
-                {renderMainContent()}
+                {isHome ? <HomeView isManager={isManager} /> : renderMainContent()}
               </div>
             </div>
 
