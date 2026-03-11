@@ -33,7 +33,7 @@ const ExecutionPlanView = () => {
         Logical dependency flow · {executionSteps.length} steps
       </p>
 
-      <div className="flex flex-col items-center gap-0">
+      <div className="flex flex-col items-start gap-0">
         {executionSteps.map((step, index) => {
           const style = statusStyles[step.status];
           const label = statusLabel[step.status];
